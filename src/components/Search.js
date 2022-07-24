@@ -1,7 +1,7 @@
 import React from "react";
 import { BiSearch } from "react-icons/bi";
 
-const Search = ({ searchHandler, filterHandler }) => {
+const Search = ({ nameInput, selectRegion, searchHandler, filterHandler }) => {
   return (
     <div className="px-2 py-5 bg-gray-500 border my-5 flex justify-between items-center">
       {/* serach  */}
@@ -11,6 +11,7 @@ const Search = ({ searchHandler, filterHandler }) => {
           <input
             type="text"
             name="search"
+            value={nameInput}
             className="p-3 flex-grow rounded-tr-xl rounded-br-xl"
             onChange={(e) => searchHandler(e)}
             placeholder="Search country by name"
@@ -21,8 +22,8 @@ const Search = ({ searchHandler, filterHandler }) => {
       {/* filter  */}
       <div className="basis-4/12 py-0">
         <select
-          name=""
-          id=""
+          name="region"
+          value={selectRegion}
           className="w-full p-3 rounded-xl"
           onChange={(e) => filterHandler(e)}
         >

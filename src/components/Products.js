@@ -8,22 +8,38 @@ import Search from "./Search";
 
 const Products = ({ loading, error, data }) => {
   const [countryData, setCountryData] = useState(null);
+  const [countryLoading, setCountryLoading] = useState(true);
+  const [countryError, setCountryError] = useState(true);
 
-  console.log("countryData ::", countryData);
-  console.log("data ::", data);
+  const [nameInput, setNameInput] = useState("");
+  const [selectRegion, setSelectRegion] = useState("");
 
   useEffect(() => {
     setCountryData(data);
   }, [data]);
 
+  useEffect(() => {
+    setCountryLoading(loading);
+  }, [loading]);
+
+  useEffect(() => {
+    setCountryError(error);
+  }, [error]);
+
   // country search handler
   const searchHandler = async (e) => {
+    setNameInput(e.target.value);
+    setSelectRegion("");
+
     if (e.target.value.length > 0) {
+      setCountryLoading(true);
       try {
         let res = await axios.get(`${baseUrl}/name/${e.target.value}`);
         setCountryData(res);
       } catch (err) {
-        console.log("error search product by country name ::", err);
+        setCountryError(true);
+      } finally {
+        setCountryLoading(false);
       }
     } else {
       setCountryData(data);
@@ -32,35 +48,38 @@ const Products = ({ loading, error, data }) => {
 
   // filter country handler
   const filterHandler = async (e) => {
-    console.log("searchHandler ::", e.target.value);
+    setNameInput("");
+    setSelectRegion(e.target.value);
 
     if (e.target.value.length > 0) {
+      setCountryLoading(true);
       try {
         let res = await axios.get(`${baseUrl}/region/${e.target.value}`);
-        console.log("search product by country region ::", res);
         setCountryData(res);
       } catch (err) {
-        console.log("error search product by country region ::", err);
+        setCountryError(true);
+      } finally {
+        setCountryLoading(false);
       }
     } else {
-      console.log("searchHandler  empty ::", e.target.value);
       setCountryData(data);
     }
   };
 
-  if (loading) {
-    return <h2>Loading ...</h2>;
-  }
-
-  if (error && countryData == null) {
-    return <h2>Something Wrong</h2>;
-  }
-
   return (
     <>
-      <Search searchHandler={searchHandler} filterHandler={filterHandler} />
+      <Search
+        nameInput={nameInput}
+        selectRegion={selectRegion}
+        searchHandler={searchHandler}
+        filterHandler={filterHandler}
+      />
       <div className="py-5 border my-5">
-        {countryData !== null ? (
+        {countryLoading ? (
+          <h2>Loading .... hocche go</h2>
+        ) : countryError && countryData === null ? (
+          <h2>Something Wrong</h2>
+        ) : countryData !== null || countryData?.data.length <= 0 ? (
           countryData?.data.map((country, index) => (
             <Product key={index} country={country} />
           ))
