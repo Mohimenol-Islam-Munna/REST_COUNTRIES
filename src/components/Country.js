@@ -1,6 +1,6 @@
 import React from "react";
 
-const Product = ({ country }) => {
+const Country = ({ country }) => {
   return (
     <div style={{ border: "1px solid salmon" }}>
       <div>
@@ -23,4 +23,4 @@ const Product = ({ country }) => {
   );
 };
 
-export default Product;
+export default Country;

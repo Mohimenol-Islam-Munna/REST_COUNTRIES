@@ -3,10 +3,10 @@ import axios from "axios";
 import { baseUrl } from "../fetchData/baseUrl";
 
 // components
-import Product from "./Country";
+import Country from "./Country";
 import Search from "./Search";
 
-const Products = ({ loading, error, data }) => {
+const Countries = ({ loading, error, data }) => {
   const [countryData, setCountryData] = useState(null);
   const [countryLoading, setCountryLoading] = useState(true);
   const [countryError, setCountryError] = useState(true);
@@ -81,7 +81,7 @@ const Products = ({ loading, error, data }) => {
           <h2>Something Wrong</h2>
         ) : countryData !== null || countryData?.data.length <= 0 ? (
           countryData?.data.map((country, index) => (
-            <Product key={index} country={country} />
+            <Country key={index} country={country} />
           ))
         ) : (
           <h2>No Country Found</h2>
@@ -91,4 +91,4 @@ const Products = ({ loading, error, data }) => {
   );
 };
 
-export default Products;
+export default Countries;

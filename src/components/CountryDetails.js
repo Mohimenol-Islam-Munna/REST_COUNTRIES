@@ -2,7 +2,7 @@ import React from "react";
 
 import useCountryDetails from "../fetchData/useCountryDetails";
 
-const ProductDetails = () => {
+const CountryDetails = () => {
   const { loading, error, data } = useCountryDetails("bd");
 
   console.log("loading :", loading);
@@ -12,4 +12,4 @@ const ProductDetails = () => {
   return <div>ProductDetails</div>;
 };
 
-export default ProductDetails;
+export default CountryDetails;
