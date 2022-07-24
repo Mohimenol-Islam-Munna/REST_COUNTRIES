@@ -38,11 +38,13 @@ const Products = ({ loading, error, data }) => {
       try {
         let res = await axios.get(`${baseUrl}/region/${e.target.value}`);
         console.log("search product by country region ::", res);
+        setCountryData(res);
       } catch (err) {
         console.log("error search product by country region ::", err);
       }
     } else {
       console.log("searchHandler  empty ::", e.target.value);
+      setCountryData(data);
     }
   };
 
