@@ -2,7 +2,6 @@ import React from "react";
 
 // components
 import Header from "./components/Header";
-import Search from "./components/Search";
 import Products from "./components/Products";
 import Pagination from "./components/Paginaion";
 import Footer from "./components/Footer";
@@ -15,11 +14,12 @@ const App = () => {
 
   return (
     <>
-      <Header />
-      <Search />
-      <Products loading={loading} error={error} data={data} />
-      <Pagination />
-      <Footer />
+      <div className="w-full sm:w-[85%] mx-auto">
+        <Header />
+        <Products loading={loading} error={error} data={data} />
+        <Pagination />
+        <Footer />
+      </div>
     </>
   );
 };

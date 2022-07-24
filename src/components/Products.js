@@ -1,10 +1,10 @@
 import React from "react";
+
+// components
 import Product from "./Product";
+import Search from "./Search";
 
 const Products = ({ loading, error, data }) => {
-  console.log("loading in Products ::", loading);
-  console.log("data in Products ::", data);
-
   if (loading) {
     return <h2>Loading ...</h2>;
   }
@@ -14,15 +14,18 @@ const Products = ({ loading, error, data }) => {
   }
 
   return (
-    <div>
-      {data !== null ? (
-        data?.data.map((country, index) => (
-          <Product key={index} country={country} />
-        ))
-      ) : (
-        <h2>No Country Found</h2>
-      )}
-    </div>
+    <>
+      <Search/>
+      <div className="py-5 border my-5">
+        {data !== null ? (
+          data?.data.map((country, index) => (
+            <Product key={index} country={country} />
+          ))
+        ) : (
+          <h2>No Country Found</h2>
+        )}
+      </div>
+    </>
   );
 };
 

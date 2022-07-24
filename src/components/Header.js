@@ -3,7 +3,7 @@ import { IoMoonOutline, IoMoon } from "react-icons/io5";
 
 const Header = () => {
   return (
-    <header>
+    <header className="py-5 border my-5">
       <nav>
         <div>
           <h2>where in the world</h2>

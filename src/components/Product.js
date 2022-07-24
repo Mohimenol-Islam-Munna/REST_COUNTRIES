@@ -1,8 +1,6 @@
 import React from "react";
 
 const Product = ({ country }) => {
-  console.log("country in Product ::", country);
-
   return (
     <div style={{ border: "1px solid salmon" }}>
       <div>
