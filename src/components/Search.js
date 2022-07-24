@@ -1,41 +1,7 @@
 import React from "react";
 import { BiSearch } from "react-icons/bi";
 
-import axios from "axios";
-import { baseUrl } from "../fetchData/baseUrl";
-
-const Search = ({ data }) => {
-  // console.log("search component :::", data);
-
-  const searchHandler = async (e) => {
-    console.log("searchHandler ::", e.target.value);
-
-    if (e.target.value.length > 0) {
-      try {
-        let res = await axios.get(`${baseUrl}/name/${e.target.value}`);
-
-        console.log("search product by country name ::", res);
-      } catch (err) {
-        console.log("error search product by country name ::", err);
-      }
-    }
-  };
-
-  const filterHandler = async (e) => {
-    console.log("searchHandler ::", e.target.value);
-
-    if (e.target.value.length > 0) {
-      try {
-        let res = await axios.get(`${baseUrl}/region/${e.target.value}`);
-        console.log("search product by country region ::", res);
-      } catch (err) {
-        console.log("error search product by country region ::", err);
-      }
-    } else {
-      console.log("searchHandler  empty ::", e.target.value);
-    }
-  };
-
+const Search = ({ searchHandler, filterHandler }) => {
   return (
     <div className="px-2 py-5 bg-gray-500 border my-5 flex justify-between items-center">
       {/* serach  */}
