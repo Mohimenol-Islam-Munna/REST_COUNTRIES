@@ -3,7 +3,7 @@ import axios from "axios";
 import { baseUrl } from "../fetchData/baseUrl";
 
 // components
-import Product from "./Product";
+import Product from "./Country";
 import Search from "./Search";
 
 const Products = ({ loading, error, data }) => {
