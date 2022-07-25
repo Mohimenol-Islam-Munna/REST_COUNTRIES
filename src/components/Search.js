@@ -3,9 +3,9 @@ import { BiSearch } from "react-icons/bi";
 
 const Search = ({ nameInput, selectRegion, searchHandler, filterHandler }) => {
   return (
-    <div className="px-2 py-5 bg-gray-500 border my-5 flex justify-between items-center">
+    <div className="py-5 flex justify-between items-center">
       {/* serach  */}
-      <div className=" basis-5/12 py-0">
+      <div className="basis-5/12 py-0">
         <div className="flex items-center bg-gray-300 rounded-xl">
           <BiSearch className="mx-3 text-xl" />
           <input

@@ -26,14 +26,15 @@ const App = () => {
 
   return (
     <>
-      <div className="w-full sm:w-[85%] bg-[#202c37] mx-auto">
-        <Header darkMode={darkMode} darkModeHandler={darkModeHandler} />
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/country-details/:cc" element={<CountryDetails />} />
-        </Routes>
-        <Footer />
-      </div>
+      <Header darkMode={darkMode} darkModeHandler={darkModeHandler} />
+      <Routes>
+        <Route path="/" element={<Home darkMode={darkMode} />} />
+        <Route
+          path="/country-details/:cc"
+          element={<CountryDetails darkMode={darkMode} />}
+        />
+      </Routes>
+      <Footer darkMode={darkMode} />
     </>
   );
 };

@@ -2,7 +2,7 @@ import React from "react";
 
 const Country = ({ country }) => {
   return (
-    <div style={{ border: "1px solid salmon" }}>
+    <div className="border border-gray-600 my-3 ">
       <div>
         <img
           src={`${country?.flags?.svg}`}

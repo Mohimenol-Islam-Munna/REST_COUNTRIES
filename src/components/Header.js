@@ -1,26 +1,29 @@
 import React from "react";
 import { IoMoonOutline, IoMoon } from "react-icons/io5";
 
-
 const Header = ({ darkMode, darkModeHandler }) => {
   return (
     <header
-      className={`py-5 px-2 sm:px-0 border my-5 ${
-        darkMode ? "bg-[#2b3945]" : "bg-red-500"
+      className={`py-4 px-2 sm:px-0 ${
+        darkMode ? "bg-[#2b3945] text-white" : "bg-white text-black"
       }`}
     >
-      <nav className="flex items-center">
-        <div className="border border-green-600 flex-grow">
-          <h2 className=" text-white">where in the world</h2>
+      <nav className="w-full sm:w-[85%] mx-auto  flex items-center">
+        <div className="flex-grow">
+          <h2 className="capitalize">where in the world</h2>
         </div>
 
-        <div className="border border-red-600 flex-grow">
+        <div className="flex-grow">
           <button
-            className="border flex gap-3 items-center ml-auto"
+            className="flex gap-3 items-center ml-auto capitalize"
             onClick={darkModeHandler}
           >
-            {darkMode ? <IoMoon /> : <IoMoonOutline />}
-            dark mode
+            {darkMode ? (
+              <IoMoon className="text-white" />
+            ) : (
+              <IoMoonOutline className="text-black" />
+            )}
+            <span>{darkMode ? "light Mode" : "dark mode"}</span>
           </button>
         </div>
       </nav>

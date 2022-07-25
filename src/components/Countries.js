@@ -71,7 +71,7 @@ const Countries = ({ loading, error, data }) => {
   };
 
   return (
-    <>
+    <div className="w-full sm:w-[85%] mx-auto">
       {/* search  */}
       <Search
         nameInput={nameInput}
@@ -81,7 +81,7 @@ const Countries = ({ loading, error, data }) => {
       />
 
       {/* countries  */}
-      <div className="py-5 border my-5">
+      <div className="py-5">
         {countryLoading ? (
           <h2>Loading .... hocche go</h2>
         ) : countryError && countryData === null ? (
@@ -99,7 +99,7 @@ const Countries = ({ loading, error, data }) => {
 
       {/* pagination  */}
       <Pagination />
-    </>
+    </div>
   );
 };
 
