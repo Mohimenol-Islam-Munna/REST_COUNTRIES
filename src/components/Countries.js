@@ -1,10 +1,14 @@
 import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import axios from "axios";
-import { baseUrl } from "../fetchData/baseUrl";
 
 // components
 import Country from "./Country";
 import Search from "./Search";
+import Pagination from "./Pagination";
+
+// api endpoint
+import { baseUrl } from "../fetchData/baseUrl";
 
 const Countries = ({ loading, error, data }) => {
   const [countryData, setCountryData] = useState(null);
@@ -68,12 +72,15 @@ const Countries = ({ loading, error, data }) => {
 
   return (
     <>
+      {/* search  */}
       <Search
         nameInput={nameInput}
         selectRegion={selectRegion}
         searchHandler={searchHandler}
         filterHandler={filterHandler}
       />
+
+      {/* countries  */}
       <div className="py-5 border my-5">
         {countryLoading ? (
           <h2>Loading .... hocche go</h2>
@@ -81,12 +88,17 @@ const Countries = ({ loading, error, data }) => {
           <h2>Something Wrong</h2>
         ) : countryData !== null || countryData?.data.length <= 0 ? (
           countryData?.data.map((country, index) => (
-            <Country key={index} country={country} />
+            <Link to={`country-details/${country?.cca2}`} key={index}>
+              <Country country={country} />
+            </Link>
           ))
         ) : (
           <h2>No Country Found</h2>
         )}
       </div>
+
+      {/* pagination  */}
+      <Pagination />
     </>
   );
 };
