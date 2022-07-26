@@ -12,8 +12,8 @@ const Home = ({ darkMode }) => {
   console.log("darkMode in home", darkMode);
 
   return (
-    <div className={`min-h-[100vh] ${darkMode ? "bg-[#202c37]" : "bg-white"}`}>
-      <Countries loading={loading} error={error} data={data} />
+    <div className={`${darkMode ? "bg-[#202c37]" : "bg-white"}`}>
+      <Countries darkMode={darkMode} loading={loading} error={error} data={data} />
     </div>
   );
 };

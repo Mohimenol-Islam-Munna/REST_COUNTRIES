@@ -10,7 +10,7 @@ import Pagination from "./Pagination";
 // api endpoint
 import { baseUrl } from "../fetchData/baseUrl";
 
-const Countries = ({ loading, error, data }) => {
+const Countries = ({ darkMode, loading, error, data }) => {
   const [countryData, setCountryData] = useState(null);
   const [countryLoading, setCountryLoading] = useState(true);
   const [countryError, setCountryError] = useState(true);
@@ -81,16 +81,18 @@ const Countries = ({ loading, error, data }) => {
       />
 
       {/* countries  */}
-      <div className="py-5">
+      <div className="flex flex-col sm:flex-row flex-wrap gap-y-5 gap-x-5 justify-center items-center">
         {countryLoading ? (
           <h2>Loading .... hocche go</h2>
         ) : countryError && countryData === null ? (
           <h2>Something Wrong</h2>
         ) : countryData !== null || countryData?.data.length <= 0 ? (
           countryData?.data.map((country, index) => (
-            <Link to={`country-details/${country?.cca2}`} key={index}>
-              <Country country={country} />
-            </Link>
+            <div className="basis-1/5 w-[250px] bg-[#2b3945] rounded-md ">
+              <Link to={`country-details/${country?.cca2}`} key={index}>
+                <Country darkMode={darkMode} country={country} />
+              </Link>
+            </div>
           ))
         ) : (
           <h2>No Country Found</h2>

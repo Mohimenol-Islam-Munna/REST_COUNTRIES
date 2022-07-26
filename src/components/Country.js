@@ -1,17 +1,17 @@
 import React from "react";
 
-const Country = ({ country }) => {
+const Country = ({ darkMode, country }) => {
   return (
-    <div className="border border-gray-600 my-3 ">
-      <div>
+    <div>
+      <div className="w-full h-[150px]">
         <img
           src={`${country?.flags?.svg}`}
-          width="100"
-          height="50"
+          className="w-[100%] h-[100%] object-cover"
           alt="flag"
         />
       </div>
-      <div>
+
+      <div className={`p-3 ${darkMode ? "text-white" : "text-black"}`}>
         <h3>{country?.name?.official}</h3>
         <ul>
           <li>Population : {country?.population}</li>
