@@ -10,6 +10,10 @@ import Pagination from "./Pagination";
 // api endpoint
 import { baseUrl } from "../fetchData/baseUrl";
 
+// css 
+import "./check.css";
+
+
 const Countries = ({ darkMode, loading, error, data }) => {
   const [countryData, setCountryData] = useState(null);
   const [countryLoading, setCountryLoading] = useState(true);
@@ -81,14 +85,14 @@ const Countries = ({ darkMode, loading, error, data }) => {
       />
 
       {/* countries  */}
-      <div className="flex flex-col sm:flex-row flex-wrap gap-y-5 gap-x-5 justify-center items-center">
+      <div className="border my-10 flex flex-wrap">
         {countryLoading ? (
-          <h2>Loading .... hocche go</h2>
+          <h2>Loading ....</h2>
         ) : countryError && countryData === null ? (
           <h2>Something Wrong</h2>
         ) : countryData !== null || countryData?.data.length <= 0 ? (
           countryData?.data.map((country, index) => (
-            <div className="basis-1/5 w-[250px] bg-[#2b3945] rounded-md ">
+            <div className="basis-1/5 bg-[#2b3945] check rounded-md px-2 mt-2">
               <Link to={`country-details/${country?.cca2}`} key={index}>
                 <Country darkMode={darkMode} country={country} />
               </Link>
