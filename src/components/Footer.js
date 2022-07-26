@@ -8,7 +8,7 @@ const Footer = ({ darkMode }) => {
   return (
     <footer className={`py-4 ${darkMode ? "bg-[#2b3945]" : "bg-white"}`}>
       <div
-        className={`w-full sm:w-[85%] mx-auto py-4 flex flex-col sm:flex-row items-center ${
+        className={`w-full sm:w-[85%] mx-auto flex flex-col sm:flex-row items-center ${
           darkMode ? "text-white" : "text-black"
         }`}
       >
