@@ -10,9 +10,6 @@ import Pagination from "./Pagination";
 // api endpoint
 import { baseUrl } from "../fetchData/baseUrl";
 
-// css 
-import "./check.css";
-
 
 const Countries = ({ darkMode, loading, error, data }) => {
   const [countryData, setCountryData] = useState(null);
@@ -85,19 +82,21 @@ const Countries = ({ darkMode, loading, error, data }) => {
       />
 
       {/* countries  */}
-      <div className="border my-10 flex flex-wrap">
+      <div className="borderborder-blue-800 grid grid-cols-[repeat(1,_minmax(150px,_50%))] justify-center xs:grid-cols-[repeat(2,_minmax(0px,_1fr))] sm:sm:grid-cols-[repeat(4,_minmax(150px,_1fr))] gap-4">
         {countryLoading ? (
           <h2>Loading ....</h2>
         ) : countryError && countryData === null ? (
           <h2>Something Wrong</h2>
-        ) : countryData !== null || countryData?.data.length <= 0 ? (
-          countryData?.data.map((country, index) => (
-            <div className="basis-1/5 bg-[#2b3945] check rounded-md px-2 mt-2">
-              <Link to={`country-details/${country?.cca2}`} key={index}>
-                <Country darkMode={darkMode} country={country} />
-              </Link>
-            </div>
-          ))
+        ) : countryData !== null || countryData?.data.length > 0 ? (
+          <>
+            {countryData?.data.map((country, index) => (
+              <div className="border border-red-500  bg-[#2b3945] rounded-md">
+                <Link to={`country-details/${country?.cca2}`} key={index}>
+                  <Country darkMode={darkMode} country={country} />
+                </Link>
+              </div>
+            ))}
+          </>
         ) : (
           <h2>No Country Found</h2>
         )}
