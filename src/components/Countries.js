@@ -81,19 +81,21 @@ const Countries = ({ darkMode, loading, error, data }) => {
       />
 
       {/* countries  */}
-      <div className="flex flex-col sm:flex-row flex-wrap gap-y-5 gap-x-5 justify-center items-center">
+      <div className="borderborder-blue-800 grid grid-cols-[repeat(1,_minmax(150px,_50%))] justify-center xs:grid-cols-[repeat(2,_minmax(0px,_1fr))] sm:sm:grid-cols-[repeat(4,_minmax(150px,_1fr))] gap-4">
         {countryLoading ? (
           <h2>Loading .... hocche go</h2>
         ) : countryError && countryData === null ? (
           <h2>Something Wrong</h2>
-        ) : countryData !== null || countryData?.data.length <= 0 ? (
-          countryData?.data.map((country, index) => (
-            <div className="basis-1/5 w-[250px] bg-[#2b3945] rounded-md ">
-              <Link to={`country-details/${country?.cca2}`} key={index}>
-                <Country darkMode={darkMode} country={country} />
-              </Link>
-            </div>
-          ))
+        ) : countryData !== null || countryData?.data.length > 0 ? (
+          <>
+            {countryData?.data.map((country, index) => (
+              <div className="border border-red-500  bg-[#2b3945] rounded-md">
+                <Link to={`country-details/${country?.cca2}`} key={index}>
+                  <Country darkMode={darkMode} country={country} />
+                </Link>
+              </div>
+            ))}
+          </>
         ) : (
           <h2>No Country Found</h2>
         )}

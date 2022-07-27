@@ -85,7 +85,7 @@ const CountryDetails = ({ darkMode }) => {
             <div className="flex flex-row flex-wrap">
               <h2 className="capitalize">border countries : </h2>
               <ul className="flex-grow flex flex-row flex-wrap gap-1">
-                {data?.data[0]?.borders.map((border, index) => (
+                {data?.data[0]?.borders?.map((border, index) => (
                   <li className="[&>.comma]:last:hidden" key={index}>
                     {" "}
                     {` ${border}`} <span className="comma">,</span>
