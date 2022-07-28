@@ -1,19 +1,33 @@
 import React from "react";
 import { BiSearch } from "react-icons/bi";
 
-const Search = ({ nameInput, selectRegion, searchHandler, filterHandler }) => {
+const Search = ({
+  darkMode,
+  nameInput,
+  selectRegion,
+  debounceSearchHandler,
+  filterHandler,
+}) => {
   return (
-    <div className="py-5 flex justify-between items-center">
+    <div className="px-2 sm:px-0 py-5 flex flex-col sm:flex-row gap-2 sm:gap-0  sm:justify-between sm:items-center">
       {/* serach  */}
       <div className="basis-5/12 py-0">
-        <div className="flex items-center bg-gray-300 rounded-xl">
+        <div
+          className={`flex items-center rounded-sm ${
+            darkMode ? "bg-[#2b3945] text-white" : "bg-white text-[#858585]"
+          }`}
+        >
           <BiSearch className="mx-3 text-xl" />
           <input
             type="text"
             name="search"
             value={nameInput}
-            className="p-3 flex-grow rounded-tr-xl rounded-br-xl"
-            onChange={(e) => searchHandler(e)}
+            className={`p-3 grow rounded-tr-sm rounded-br-sm ${
+              darkMode
+                ? "bg-[#2b3945] text-white placeholder:text-white"
+                : "bg-white text-[#858585] placeholder:text-[#858585]"
+            }`}
+            onChange={(event) => debounceSearchHandler(event.target.value)}
             placeholder="Search country by name"
           />
         </div>
@@ -24,7 +38,9 @@ const Search = ({ nameInput, selectRegion, searchHandler, filterHandler }) => {
         <select
           name="region"
           value={selectRegion}
-          className="w-full p-3 rounded-xl"
+          className={`w-full p-3 rounded-sm ${
+            darkMode ? "bg-[#2b3945] text-white" : "bg-white text-[#858585]"
+          }`}
           onChange={(e) => filterHandler(e)}
         >
           <option value="">Select Region</option>

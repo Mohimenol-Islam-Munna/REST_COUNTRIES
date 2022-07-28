@@ -7,7 +7,11 @@ import Header from "./components/Header";
 import Footer from "./components/Footer";
 import CountryDetails from "./components/CountryDetails";
 
+// custom hooks
+import useAllCountry from "./fetchData/useAllCountry";
+
 const App = () => {
+  const { loading, error, data } = useAllCountry();
   const [darkMode, setDarkMode] = useState(true);
 
   const darkModeHandler = () => {
@@ -25,17 +29,27 @@ const App = () => {
   }, []);
 
   return (
-    <>
+    <div>
       <Header darkMode={darkMode} darkModeHandler={darkModeHandler} />
       <Routes>
-        <Route path="/" element={<Home darkMode={darkMode} />} />
+        <Route
+          path="/"
+          element={
+            <Home
+              loading={loading}
+              error={error}
+              data={data}
+              darkMode={darkMode}
+            />
+          }
+        />
         <Route
           path="/country-details/:cc"
           element={<CountryDetails darkMode={darkMode} />}
         />
       </Routes>
       <Footer darkMode={darkMode} />
-    </>
+    </div>
   );
 };
 
