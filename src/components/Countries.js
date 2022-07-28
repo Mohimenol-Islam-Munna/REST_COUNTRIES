@@ -1,6 +1,7 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useMemo } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
+import debounce from "lodash.debounce";
 
 // components
 import Country from "./Country";
@@ -23,14 +24,16 @@ const Countries = ({ darkMode, loading, error, data }) => {
   const [selectRegion, setSelectRegion] = useState("");
 
   // country search handler
-  const searchHandler = async (e) => {
-    setNameInput(e.target.value);
+  const searchHandler = async (value) => {
+    console.log("search handler value:", value);
+
+    setNameInput(value);
     setSelectRegion("");
 
-    if (e.target.value.length > 0) {
+    if (value.length > 0) {
       setCountryLoading(true);
       try {
-        let res = await axios.get(`${baseUrl}/name/${e.target.value}`);
+        let res = await axios.get(`${baseUrl}/name/${value}`);
         setCountryData(res?.data);
       } catch (err) {
         setCountryError(true);
@@ -41,6 +44,12 @@ const Countries = ({ darkMode, loading, error, data }) => {
       setCountryData(data?.data);
     }
   };
+
+  // country search debounce handler
+  const debounceSearchHandler = useMemo(
+    () => debounce((event, name) => searchHandler(event, name), 300),
+    []
+  );
 
   // filter country handler
   const filterHandler = async (e) => {
@@ -101,6 +110,13 @@ const Countries = ({ darkMode, loading, error, data }) => {
     setCountryError(error);
   }, [error]);
 
+  // Stop the invocation of the debounced handlers after unmounting
+  useEffect(() => {
+    return () => {
+      debounceSearchHandler.cancel();
+    };
+  }, []);
+
   return (
     <div className="border border-transparent w-full sm:w-[85%] mx-auto">
       {/* search  */}
@@ -108,7 +124,7 @@ const Countries = ({ darkMode, loading, error, data }) => {
         darkMode={darkMode}
         nameInput={nameInput}
         selectRegion={selectRegion}
-        searchHandler={searchHandler}
+        debounceSearchHandler={debounceSearchHandler}
         filterHandler={filterHandler}
       />
 

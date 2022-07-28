@@ -5,7 +5,7 @@ const Search = ({
   darkMode,
   nameInput,
   selectRegion,
-  searchHandler,
+  debounceSearchHandler,
   filterHandler,
 }) => {
   return (
@@ -13,19 +13,21 @@ const Search = ({
       {/* serach  */}
       <div className="basis-5/12 py-0">
         <div
-          className={`flex items-center rounded-sm ${darkMode ? "bg-[#2b3945] text-white" : "bg-white text-[#858585]"
-            }`}
+          className={`flex items-center rounded-sm ${
+            darkMode ? "bg-[#2b3945] text-white" : "bg-white text-[#858585]"
+          }`}
         >
           <BiSearch className="mx-3 text-xl" />
           <input
             type="text"
             name="search"
             value={nameInput}
-            className={`p-3 grow rounded-tr-sm rounded-br-sm ${darkMode
+            className={`p-3 grow rounded-tr-sm rounded-br-sm ${
+              darkMode
                 ? "bg-[#2b3945] text-white placeholder:text-white"
                 : "bg-white text-[#858585] placeholder:text-[#858585]"
-              }`}
-            onChange={(e) => searchHandler(e)}
+            }`}
+            onChange={(event) => debounceSearchHandler(event.target.value)}
             placeholder="Search country by name"
           />
         </div>
@@ -36,8 +38,9 @@ const Search = ({
         <select
           name="region"
           value={selectRegion}
-          className={`w-full p-3 rounded-sm ${darkMode ? "bg-[#2b3945] text-white" : "bg-white text-[#858585]"
-            }`}
+          className={`w-full p-3 rounded-sm ${
+            darkMode ? "bg-[#2b3945] text-white" : "bg-white text-[#858585]"
+          }`}
           onChange={(e) => filterHandler(e)}
         >
           <option value="">Select Region</option>
