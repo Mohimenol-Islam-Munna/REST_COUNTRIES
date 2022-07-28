@@ -5,8 +5,7 @@ const Country = ({ darkMode, country }) => {
     <div>
       <div className="w-full h-[150px]">
         <img
-          // src={`${country?.flags?.svg}`}
-          src="#"
+          src={`${country?.flags?.svg}`}
           className="w-[100%] h-[100%] object-cover"
           alt="flag"
         />
