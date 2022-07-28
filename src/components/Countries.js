@@ -16,7 +16,7 @@ const Countries = ({ darkMode, loading, error, data }) => {
   const [countryLoading, setCountryLoading] = useState(true);
   const [countryError, setCountryError] = useState(true);
 
-  const [countryPerPageCount, setCountryPerPageCount] = useState(12);
+  const [countryPerPageCount] = useState(12);
   const [countryStartIndex, setCountryStartIndex] = useState(0);
 
   const [nameInput, setNameInput] = useState("");

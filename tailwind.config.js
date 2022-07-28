@@ -2,7 +2,11 @@
 module.exports = {
   content: ["./src/**/*.{js,jsx,ts,tsx}"],
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        nunito: ["Nunito+Sans", "sans-serif"],
+      },
+    },
     screens: {
       xs: "400px",
       sm: "640px",

@@ -23,7 +23,9 @@ const Header = ({ darkMode, darkModeHandler }) => {
             ) : (
               <IoMoon className="text-[#111517]" />
             )}
-            <span>{darkMode ? "light Mode" : "dark mode"}</span>
+            <span>
+              {darkMode ? "light Mode" : "dark mode"}
+            </span>
           </button>
         </div>
       </nav>
