@@ -2,12 +2,11 @@ import React from "react";
 import ReactPaginate from "react-paginate";
 
 const Paginaion = ({
+  darkMode,
   totoalCountries,
   handlePageClick,
   countryPerPageCount,
 }) => {
-  // console.log("totoalCountries in paginate component", totoalCountries?.length);
-
   return (
     <div className="py-5 text-white">
       <ReactPaginate
@@ -25,10 +24,18 @@ const Paginaion = ({
         previousClassName={"py-3"}
         breakClassName={"py-3"}
         nextClassName={"py-3"}
-        pageLinkClassName={"border border-sky-500 p-3 text-white"}
-        previousLinkClassName={"border border-sky-500 p-3 text-white"}
-        breakLinkClassName={"border border-sky-500 p-3 text-white"}
-        nextLinkClassName={"border border-sky-500 p-3 text-white"}
+        pageLinkClassName={`border border-sky-500 p-3 ${
+          darkMode ? " text-white" : "text-[#111517]"
+        }`}
+        previousLinkClassName={`border border-sky-500 p-3 ${
+          darkMode ? " text-white" : "text-[#111517]"
+        }`}
+        breakLinkClassName={`border border-sky-500 p-3 ${
+          darkMode ? " text-white" : "text-[#111517]"
+        }`}
+        nextLinkClassName={`border border-sky-500 p-3 ${
+          darkMode ? " text-white" : "text-[#111517]"
+        }`}
         activeLinkClassName={"bg-red-500"}
         disabledLinkClassName={"bg-gray-700 cursor-auto"}
       />

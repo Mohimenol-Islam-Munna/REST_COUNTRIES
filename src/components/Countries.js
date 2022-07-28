@@ -19,9 +19,6 @@ const Countries = ({ darkMode, loading, error, data }) => {
   const [countryPerPageCount, setCountryPerPageCount] = useState(12);
   const [countryStartIndex, setCountryStartIndex] = useState(0);
 
-  console.log("countryData ::", countryData);
-  // console.log("countryPerPage ::", countryPerPage);
-
   const [nameInput, setNameInput] = useState("");
   const [selectRegion, setSelectRegion] = useState("");
 
@@ -67,7 +64,6 @@ const Countries = ({ darkMode, loading, error, data }) => {
 
   // pagination page handler
   const handlePageClick = (data) => {
-    console.log("handlePageClick", data);
     if (data.selected === 0) {
       setCountryStartIndex(0);
     }
@@ -106,28 +102,45 @@ const Countries = ({ darkMode, loading, error, data }) => {
   }, [error]);
 
   return (
-    <div className="w-full sm:w-[85%] mx-auto">
+    <div className="border border-transparent w-full sm:w-[85%] mx-auto">
+      {/* search  */}
+      <Search
+        darkMode={darkMode}
+        nameInput={nameInput}
+        selectRegion={selectRegion}
+        searchHandler={searchHandler}
+        filterHandler={filterHandler}
+      />
+
       <div>
         {countryLoading ? (
-          <h2 className="text-center text-white text-3xl mt-5">Loading ....</h2>
+          <h2
+            className={`text-center text-3xl mt-5 ${
+              darkMode ? " text-white" : "text-[#111517]"
+            }`}
+          >
+            Loading ....
+          </h2>
         ) : countryError && countryData === null ? (
-          <h2 className="text-center text-red-400 text-3xl mt-5">
+          <h2
+            className={`text-center text-3xl mt-5 ${
+              darkMode ? " text-red-400" : "text-[#111517]"
+            }`}
+          >
             Something Wrong
           </h2>
         ) : countryData !== null && countryData?.length > 0 ? (
           <>
-            {/* search  */}
-            <Search
-              nameInput={nameInput}
-              selectRegion={selectRegion}
-              searchHandler={searchHandler}
-              filterHandler={filterHandler}
-            />
             {/* countries  */}
-            <div className="borderborder-blue-800 grid grid-cols-[repeat(1,_minmax(150px,_50%))] justify-center xs:grid-cols-[repeat(2,_minmax(0px,_1fr))] sm:sm:grid-cols-[repeat(4,_minmax(150px,_1fr))] gap-4">
+            <div className="px-2 sm:px-0 grid grid-cols-[repeat(1,_minmax(150px,_70%))] justify-center xs:grid-cols-[repeat(2,_minmax(0px,_1fr))] sm:sm:grid-cols-[repeat(4,_minmax(0px,_1fr))] gap-4">
               {countryPerPage?.map((country, index) => (
-                <div className="bg-[#2b3945] rounded-md">
-                  <Link to={`country-details/${country?.cca2}`} key={index}>
+                <div
+                  key={index}
+                  className={`rounded-md ${
+                    darkMode ? "bg-[#2b3945]" : "bg-white"
+                  }`}
+                >
+                  <Link to={`country-details/${country?.cca2}`}>
                     <Country darkMode={darkMode} country={country} />
                   </Link>
                 </div>
@@ -136,13 +149,18 @@ const Countries = ({ darkMode, loading, error, data }) => {
 
             {/* pagination  */}
             <Pagination
+              darkMode={darkMode}
               handlePageClick={handlePageClick}
               totoalCountries={countryData}
               countryPerPageCount={countryPerPageCount}
             />
           </>
         ) : (
-          <h2 className="text-center text-white text-3xl mt-5">
+          <h2
+            className={`text-center text-3xl mt-5 ${
+              darkMode ? " text-white" : "text-[#111517]"
+            }`}
+          >
             No Country Found
           </h2>
         )}

@@ -6,12 +6,16 @@ const Country = ({ darkMode, country }) => {
       <div className="w-full h-[150px]">
         <img
           src={`${country?.flags?.svg}`}
-          className="w-[100%] h-[100%] object-cover"
+          className="w-[100%] h-[100%] object-cover rounded-tl-md rounded-tr-md"
           alt="flag"
         />
       </div>
 
-      <div className={`p-3 ${darkMode ? "text-white" : "text-black"}`}>
+      <div
+        className={`p-3 text-xs sm:text-base ${
+          darkMode ? "text-white" : "text-black"
+        }`}
+      >
         <h3>{country?.name?.official}</h3>
         <ul>
           <li>Population : {country?.population}</li>
