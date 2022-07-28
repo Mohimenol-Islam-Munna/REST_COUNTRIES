@@ -29,6 +29,8 @@ const Paginaion = ({
         previousLinkClassName={"border border-sky-500 p-3 text-white"}
         breakLinkClassName={"border border-sky-500 p-3 text-white"}
         nextLinkClassName={"border border-sky-500 p-3 text-white"}
+        activeLinkClassName={"bg-red-500"}
+        disabledLinkClassName={"bg-gray-700 cursor-auto"}
       />
     </div>
   );
