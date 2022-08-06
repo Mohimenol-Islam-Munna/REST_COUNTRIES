@@ -5,7 +5,8 @@ const Search = ({
   darkMode,
   nameInput,
   selectRegion,
-  debounceSearchHandler,
+
+  inputTextHandler,
   filterHandler,
 }) => {
   return (
@@ -27,7 +28,9 @@ const Search = ({
                 ? "bg-[#2b3945] text-white placeholder:text-white"
                 : "bg-white text-[#858585] placeholder:text-[#858585]"
             }`}
-            onChange={(event) => debounceSearchHandler(event.target.value)}
+            onChange={(event) => {
+              inputTextHandler(event.target.value);
+            }}
             placeholder="Search country by name"
           />
         </div>

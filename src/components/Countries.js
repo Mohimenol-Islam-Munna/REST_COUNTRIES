@@ -23,31 +23,39 @@ const Countries = ({ darkMode, loading, error, data }) => {
   const [nameInput, setNameInput] = useState("");
   const [selectRegion, setSelectRegion] = useState("");
 
-  // country search handler
-  const searchHandler = async (value) => {
-    console.log("search handler value:", value);
-
+  // upadte search input field handler
+  const inputTextHandler = (value) => {
+    // upadte input state
     setNameInput(value);
-    setSelectRegion("");
 
     if (value.length > 0) {
-      setCountryLoading(true);
-      try {
-        let res = await axios.get(`${baseUrl}/name/${value}`);
-        setCountryData(res?.data);
-      } catch (err) {
-        setCountryError(true);
-      } finally {
-        setCountryLoading(false);
-      }
+      // call debounce search handler
+      debounceSearchHandler(value);
     } else {
       setCountryData(data?.data);
     }
   };
 
+  // country search handler
+  const searchHandler = async (value) => {
+    setSelectRegion("");
+
+    setCountryLoading(true);
+    try {
+      let res = await axios.get(`${baseUrl}/name/${value}`);
+      setCountryData(res?.data);
+
+      console.log("search country result :: ", res?.data);
+    } catch (err) {
+      setCountryError(true);
+    } finally {
+      setCountryLoading(false);
+    }
+  };
+
   // country search debounce handler
   const debounceSearchHandler = useMemo(
-    () => debounce((event, name) => searchHandler(event, name), 300),
+    () => debounce((value) => searchHandler(value), 300),
     []
   );
 
@@ -124,7 +132,7 @@ const Countries = ({ darkMode, loading, error, data }) => {
         darkMode={darkMode}
         nameInput={nameInput}
         selectRegion={selectRegion}
-        debounceSearchHandler={debounceSearchHandler}
+        inputTextHandler={inputTextHandler}
         filterHandler={filterHandler}
       />
 
