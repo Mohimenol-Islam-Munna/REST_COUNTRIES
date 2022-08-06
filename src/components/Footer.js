@@ -34,7 +34,21 @@ const Footer = ({ darkMode }) => {
           </a>
         </h6>
         <p className="basis-full sm:basis-2/12 flex gap-3 justify-center">
-          <TiSocialFacebookCircular /> <TiSocialLinkedinCircular />{" "}
+          <a
+            href="https://www.facebook.com/mohimenol.munna"
+            target="_blank"
+            rel="noreferrer"
+          >
+            <TiSocialFacebookCircular />{" "}
+          </a>{" "}
+          <a
+            href="https://www.linkedin.com/in/mohimenol-munna-a54167132/"
+            target="_blank"
+            rel="noreferrer"
+          >
+            {" "}
+            <TiSocialLinkedinCircular />{" "}
+          </a>
         </p>
       </div>
     </footer>
