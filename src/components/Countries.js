@@ -30,7 +30,8 @@ const Countries = ({ darkMode, loading, error, data }) => {
 
     if (value.length > 0) {
       // call debounce search handler
-      debounceSearchHandler(value);
+      // debounceSearchHandler(value);
+      searchHandler(value);
     } else {
       setCountryData(data?.data);
     }
