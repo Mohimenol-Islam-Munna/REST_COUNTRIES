@@ -83,8 +83,7 @@ const Countries = ({ darkMode, loading, error, data }) => {
   const handlePageClick = (data) => {
     if (data.selected === 0) {
       setCountryStartIndex(0);
-    }
-    {
+    } else {
       setCountryStartIndex(data.selected * 10);
     }
   };
@@ -97,6 +96,8 @@ const Countries = ({ darkMode, loading, error, data }) => {
         countryStartIndex + countryPerPageCount
       )
     );
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [data]);
 
   useEffect(() => {
@@ -108,6 +109,7 @@ const Countries = ({ darkMode, loading, error, data }) => {
         )
       );
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [countryData, countryStartIndex]);
 
   useEffect(() => {
@@ -123,6 +125,7 @@ const Countries = ({ darkMode, loading, error, data }) => {
     return () => {
       debounceSearchHandler.cancel();
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
