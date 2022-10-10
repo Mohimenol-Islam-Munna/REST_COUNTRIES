@@ -17,10 +17,11 @@ const CountryDetails = ({ darkMode }) => {
         <div className="sm:my-5">
           <Link to="/">
             <button
-              className={`border py-0.5 sm:py-2 px-1 sm:px-4 rounded-md flex items-center gap-1 sm:gap-3 ${darkMode ? "bg-[#2b3945] text-white" : "bg-white text-[#111517]"
-                } `}
+              className={`border py-0.5 sm:py-2 px-1 sm:px-4 rounded-md flex items-center gap-1 sm:gap-3 ${
+                darkMode ? "bg-[#2b3945] text-white" : "bg-white text-[#111517]"
+              } `}
             >
-              <BsArrowLeft /> Back To
+              <BsArrowLeft /> Back
             </button>
           </Link>
         </div>
@@ -45,8 +46,9 @@ const CountryDetails = ({ darkMode }) => {
 
             {/* right side content  */}
             <div
-              className={`mt-5 sm:mt-0 basis-full sm:basis-6/12 ${darkMode ? "text-white" : "text-[#111517]"
-                }`}
+              className={`mt-5 sm:mt-0 basis-full sm:basis-6/12 ${
+                darkMode ? "text-white" : "text-[#111517]"
+              }`}
             >
               <h2 className="text-3xl mb-5 capitalize">
                 {data?.data[0]?.name?.common}

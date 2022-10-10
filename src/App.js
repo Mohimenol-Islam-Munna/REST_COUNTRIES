@@ -16,6 +16,7 @@ const App = () => {
   const { loading, error, data } = useAllCountry();
   const [darkMode, setDarkMode] = useState(true);
 
+  // dark mode handler 
   const darkModeHandler = () => {
     setDarkMode((prevState) => {
       return !prevState;
