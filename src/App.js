@@ -6,6 +6,8 @@ import Home from "./components/Home";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import CountryDetails from "./components/CountryDetails";
+import CheckHok from "./components/CheckHoc";
+import JobDescriptionEditor from "./components/CKeditor";
 
 // custom hooks
 import useAllCountry from "./fetchData/useAllCountry";
@@ -43,10 +45,12 @@ const App = () => {
             />
           }
         />
+
         <Route
           path="/country-details/:cc"
           element={<CountryDetails darkMode={darkMode} />}
         />
+        <Route path="/check-hoc" element={<CheckHok darkMode={darkMode} />} />
       </Routes>
       <Footer darkMode={darkMode} />
     </div>
